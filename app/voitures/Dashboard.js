@@ -14,7 +14,8 @@ function Dashboard() {
     const [loading, setLoading] = useState(false);
     const navigation = useNavigation();
 
-        const fetchVoitures = useCallback(async () => {
+        const fetchVoitures = useCallback(async () => {  
+
             setLoading(true);
 
             try {
@@ -110,7 +111,7 @@ function Dashboard() {
             </View>
 
             <View style={{ marginBottom: 20 }}>
-                <Button color="#198754" title="Ajouter une voiture" onPress={() => navigation.navigate('screens/AddCarForm')} />
+                <Button color="#198754" title="Ajouter une voiture" onPress={() => navigation.navigate('voitures/AddCarForm')} />
             </View>    
 
             {filteredVoitures && filteredVoitures.length > 0 ? (
@@ -132,7 +133,7 @@ function Dashboard() {
                         </View>    
                         </View>
                         <View style={styles.cardFooter}>
-                            <Button color="#0d6efd" title="Modifier" onPress={() => navigation.navigate('screens/EditCarForm', { id: item[0].id })} />
+                            <Button color="#0d6efd" title="Modifier" onPress={() => navigation.navigate('voitures/EditCarForm', { id: item[0].id })} />
                             <Button title="Supprimer" color="red" onPress={() => confirmDelete(item[0].id)} />
                         </View>    
                     </View>
@@ -160,6 +161,7 @@ const styles = StyleSheet.create({
     input: {
         borderRadius: 5,
         borderColor: '#ccc',
+        backgroundColor: '#fff',
         borderWidth: 1,
         marginBottom: 5,
         elevation: 1,
@@ -170,6 +172,7 @@ const styles = StyleSheet.create({
     },
     pickerStyle: {
         borderRadius: 5,
+        backgroundColor: '#fff',
         elevation: 1
     },
 
@@ -185,7 +188,8 @@ const styles = StyleSheet.create({
     },
     image: {
         width: '100%',
-        height: 150,
+        height: 200,
+        resizeMode: 'cover'
     },
 
     cardContent: {

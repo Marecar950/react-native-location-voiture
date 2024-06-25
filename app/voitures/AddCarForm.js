@@ -111,7 +111,7 @@ function AddCarForm() {
     }
 
     return (
-        <ScrollView contentContainerStyle={styles.container}>
+        <ScrollView keyboardShouldPersistTaps='handled' contentContainerStyle={styles.container}>
         <View style={styles.card}>
             {!submitted ? (
                 <View>
@@ -185,8 +185,8 @@ function AddCarForm() {
                     
                     <Text>Date de début de location :</Text>    
                     <View style={styles.inputGroup}>
-                        <TouchableOpacity style={styles.button} onPress={() => setDateDebutPicker(true)}>
-                            <Text>Sélectionner la date de début</Text>
+                        <TouchableOpacity onPress={() => setDateDebutPicker(true)}>
+                            <Text style={styles.input}>{formData.dateDebut.toLocaleDateString()}</Text>
                         </TouchableOpacity>
                             {dateDebutPicker && (
                                 <DateTimePicker
@@ -200,13 +200,12 @@ function AddCarForm() {
                                     }}
                                 />
                             )}
-                            <Text style={styles.dateText}>{formData.dateDebut.toLocaleDateString()}</Text>
                     </View>
 
                     <Text>Date de fin de location :</Text>
                     <View style={styles.inputGroup}>        
-                        <TouchableOpacity style={styles.button} onPress={() => setDateFinPicker(true)}>
-                            <Text>Sélectionner la date de fin</Text>
+                        <TouchableOpacity onPress={() => setDateFinPicker(true)}>
+                            <Text style={styles.input}>{formData.dateFin.toLocaleDateString()}</Text>
                         </TouchableOpacity>
                             {dateFinPicker && (
                                 <DateTimePicker
@@ -220,7 +219,6 @@ function AddCarForm() {
                                     }}
                                 />    
                             )}
-                        <Text style={styles.dateText}>{formData.dateFin.toLocaleDateString()}</Text>
                     </View>    
 
                     <View style={styles.inputGroup}>
@@ -258,26 +256,25 @@ const styles = StyleSheet.create({
     },
     input: {
         borderWidth: 1,
-        borderRadius: 5,
         borderColor: '#ccc',
+        borderRadius: 5,
         marginBottom: 5,
-        elevation: 1,
         padding: 10
     },
     inputGroup: {
         marginBottom: 10,
     },
     GooglePlaces: {
+        borderWidth: 1,
         borderRadius: 5,
         borderColor: '#ccc',
         marginBottom: 10,
-        elevation: 1,
-        padding: 6
     },
     pickerStyle: {
+        borderWidth: 1,
+        borderColor: '#ccc',
         borderRadius: 5,
-        elevation: 5,
-        marginBottom: 10,
+        marginBottom: 5,
     },
     button: {
         backgroundColor: '#C0C0C0',

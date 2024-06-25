@@ -60,6 +60,7 @@ function EditCarForm() {
                     dateFin: dateFin, 
                     image: voiture.image,
                 });
+                console.log(voitureDetails);
 
                 if (ref.current) {
                     ref.current.setAddressText(departureLocation);
@@ -168,7 +169,7 @@ function EditCarForm() {
 
                 <View style={styles.inputGroup}>
                     <Text>Nombre de passagers :</Text>
-                    <TextInput style={styles.input} placeholder="Entrez le nombre de passagers" value={String(voitureDetails.nombrePassagers)} onChangeText={(text) => handleChange('nombrePassagers', text)} />
+                    <TextInput style={styles.input} placeholder="Entrez le nombre de passagers" keyboardType='numeric' value={String(voitureDetails.nombrePassagers)} onChangeText={(text) => handleChange('nombrePassagers', text)} />
                 </View>
 
                 <View style={styles.inputGroup}>
@@ -184,7 +185,7 @@ function EditCarForm() {
 
                 <View style={styles.inputGroup}>
                     <Text>Prix de la location par jour :</Text>
-                    <TextInput style={styles.input} value={String(voitureDetails.prixLocation)} onChange={(text) => handleChange('prixLocation', text)} keyboardType="numeric" />
+                    <TextInput style={styles.input} value={String(voitureDetails.prixLocation)} onChangeText={(text) => handleChange('prixLocation', text)} keyboardType="numeric" />
                 </View>
 
                 <View style={styles.inputGroup}>
@@ -218,8 +219,8 @@ function EditCarForm() {
 
                 <Text>Date de début de location :</Text>
                 <View style={styles.inputGroup}>
-                    <TouchableOpacity style={styles.button} onPress={() => setDateDebutPicker(true)}>
-                        <Text>Sélectionner la date de début</Text>
+                    <TouchableOpacity onPress={() => setDateDebutPicker(true)}>
+                        <Text style={styles.input}>{voitureDetails.dateDebut.toLocaleDateString()}</Text>
                     </TouchableOpacity>
                     {dateDebutPicker && (
                         <DateTimePicker
@@ -233,13 +234,12 @@ function EditCarForm() {
                             }}
                         />    
                     )}
-                    <Text>{voitureDetails.dateDebut.toLocaleDateString()}</Text>
                 </View>
 
                 <View style={styles.inputGroup}>
                     <Text>Date de fin de location :</Text>
-                    <TouchableOpacity style={styles.button} onPress={() => setDateFinPicker(true)}>
-                        <Text>Sélectionner la date de fin</Text>
+                    <TouchableOpacity onPress={() => setDateFinPicker(true)}>
+                        <Text style={styles.input}>{voitureDetails.dateFin.toLocaleDateString()}</Text>
                     </TouchableOpacity>
                         {dateFinPicker && (
                             <DateTimePicker
@@ -253,11 +253,10 @@ function EditCarForm() {
                                 }}
                             />    
                         )}
-                        <Text>{voitureDetails.dateFin.toLocaleDateString()}</Text>
                 </View>        
 
                 <View style={styles.inputGroup}>
-                    <TouchableOpacity style={styles.button} onPress={handleImagePick}>
+                    <TouchableOpacity onPress={handleImagePick}>
                         <Text>Choisir une image</Text> 
                     </TouchableOpacity>
                     {voitureDetails.imagePreview && (
@@ -292,12 +291,11 @@ const styles = StyleSheet.create({
     container: {
         flexGrow: 1,
         padding: 16,
-        backgroundColor: '#fff'
     },
     card: {
         padding: 16,
         borderRadius: 8,
-        backgroundColor: '#f9f9f9',
+        backgroundColor: '#fff',
         elevation: 3
     },
     inputGroup: {
@@ -306,18 +304,13 @@ const styles = StyleSheet.create({
     input: {
         borderWidth: 1,
         borderColor: '#ccc',
-        elevation: 1,
         borderRadius: 5,
         padding: 10
     },
     pickerStyle: {
-        borderRadius: 5,
-        elevation: 5,
-    },
-    picker: {
-        borderColor: '#ccc',
         borderWidth: 1,
-        borderRadius: 4,
+        borderRadius: 5,
+        borderColor: '#ccc',
     },
     dateText: {
         height: 40,
