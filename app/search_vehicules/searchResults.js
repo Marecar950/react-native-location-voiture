@@ -95,7 +95,7 @@ function SearchResults() {
         if (isLoggedUser) {
             navigation.navigate('reservation/Reservation', { result, formData: formState });
         } else {
-            navigation.navigate('Login');
+            navigation.navigate('login/Login');
         }
     }
 
